@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import authRouter from "./routes/authRouter.js";
+import ErrorHandler from "./utils/ErrorHandler.js";
 import "./db.js";
 
 const app = express();
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("*", (req, res) => res.sendStatus(404));
+app.use(ErrorHandler);
 
 app.listen(port, (req, res) =>
   console.log(`server is running on port ${port}`)
